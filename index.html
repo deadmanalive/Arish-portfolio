@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <title>Syed Mohammed Arish · LLM Engineer</title>
+  <!-- Google Fonts: refined & professional -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Bricolage+Grotesque:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (lightweight icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* ----- CSS VARIABLES — Black & white base, smooth gradients for buttons ----- */
+    :root {
+      --bg-white: #ffffff;
+      --bg-offwhite: #fafafa;
+      --text-dark: #0a0a0a;
+      --text-soft: #2b2b2b;
+      --text-muted: #4a4a4a;
+      --border-light: #e8e8ec;
+      --card-bg: #ffffff;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.02), 0 4px 12px rgba(0, 0, 0, 0.02);
+      --shadow-lift: 0 20px 28px -12px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.02);
+      --transition-smooth: all 0.25s ease;
+      --space-section: 6rem;
+      --container-padding: 2rem;
+      /* sophisticated gradients for buttons (black/gray depth) */
+      --gradient-primary: linear-gradient(135deg, #111111 0%, #2c2c2c 100%);
+      --gradient-hover: linear-gradient(135deg, #000000 0%, #1f1f1f 100%);
+    }
+
+    /* extra mobile optimizations: spacing reduces */
+    @media (max-width: 768px) {
+      :root {
+        --space-section: 4rem;
+        --container-padding: 1.25rem;
+      }
+    }
+
+    body {
+      background: var(--bg-white);
+      color: var(--text-dark);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+      font-weight: 400;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .hero-title, .nav-logo, .stat-number, .edu-degree {
+      font-family: 'Bricolage Grotesque', monospace;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      font-weight: 700;
+      border-left: 4px solid #000000;
+      padding-left: 1rem;
+      color: #000;
+    }
+
+    @media (max-width: 600px) {
+      h2 { font-size: 1.8rem; margin-bottom: 1.5rem; }
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 var(--container-padding);
+      width: 100%;
+    }
+
+    /* ----- NAVBAR (fully responsive, hide on scroll) ----- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(14px);
+      z-index: 1000;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border-light);
+      transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      transform: translateY(0);
+    }
+    .navbar.hide {
+      transform: translateY(-100%);
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 var(--container-padding);
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .nav-logo {
+      font-size: 1.45rem;
+      font-weight: 800;
+      text-decoration: none;
+      background: linear-gradient(135deg, #000, #3a3a3a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #1e1e1e;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: #000000;
+      font-weight: 600;
+      border-bottom: 2px solid #000;
+      padding-bottom: 2px;
+    }
+    @media (max-width: 700px) {
+      .nav-container { flex-direction: column; align-items: center; gap: 0.5rem; }
+      .nav-links { gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+      .nav-links a { font-size: 0.85rem; }
+      .navbar { padding: 0.7rem 0; }
+    }
+    @media (max-width: 480px) {
+      .nav-links { gap: 0.9rem; }
+      .nav-links a { font-size: 0.8rem; }
+      .nav-logo { font-size: 1.2rem; }
+    }
+
+    /* ----- HERO full viewport (mobile-optimized) ----- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      background: var(--bg-white);
+      padding: 5rem 0 3rem;
+    }
+    .hero-content {
+      max-width: 800px;
+      width: 100%;
+    }
+    .hero-title {
+      font-size: clamp(2.6rem, 10vw, 5rem);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      background: linear-gradient(145deg, #000000, #2e2e2e);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .role-wrapper {
+      display: flex;
+      gap: 0.5rem;
+      font-size: clamp(1.2rem, 5vw, 1.8rem);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: var(--text-soft);
+      flex-wrap: wrap;
+      align-items: baseline;
+    }
+    #typewriter {
+      font-family: 'Inter', monospace;
+      font-weight: 600;
+      color: #000;
+      border-right: 2px solid #000;
+      padding-right: 6px;
+    }
+    .hero-bio {
+      font-size: clamp(1rem, 4vw, 1.2rem);
+      color: #3a3a3a;
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+    .cta-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.6rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+      border: none;
+      font-size: 0.9rem;
+      letter-spacing: -0.2px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .btn-primary {
+      background: var(--gradient-primary);
+      color: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 18px rgba(0,0,0,0.08);
+      background: var(--gradient-hover);
+    }
+    .btn-outline {
+      background: transparent;
+      color: #111;
+      border: 1.5px solid #1a1a1a;
+      transition: all 0.25s ease;
+    }
+    .btn-outline:hover {
+      background: #000;
+      color: white;
+      border-color: #000;
+      transform: translateY(-2px);
+    }
+    /* floating subtle element - hides on very small to avoid overlap */
+    .floating-shape {
+      position: absolute;
+      right: 4%;
+      bottom: 8%;
+      width: 160px;
+      height: 160px;
+      border: 1.5px solid rgba(0,0,0,0.06);
+      border-radius: 62% 38% 42% 58% / 48% 52% 48% 52%;
+      animation: floatRotation 22s infinite ease-in-out;
+      pointer-events: none;
+      z-index: 0;
+    }
+    @keyframes floatRotation {
+      0% { transform: translate(0, 0) rotate(0deg); border-radius: 62% 38% 42% 58% / 48% 52% 48% 52%;}
+      50% { transform: translate(12px, -14px) rotate(6deg); border-radius: 48% 52% 55% 45% / 52% 48% 52% 48%;}
+      100% { transform: translate(0, 0) rotate(0deg); border-radius: 62% 38% 42% 58% / 48% 52% 48% 52%;}
+    }
+    @media (max-width: 700px) {
+      .floating-shape { width: 90px; height: 90px; opacity: 0.3; bottom: 5%; right: 2%; }
+    }
+    @media (max-width: 480px) {
+      .floating-shape { display: none; }
+    }
+
+    /* about two column (fully responsive) */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .about-text p {
+      color: #2a2a2a;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .stat-card {
+      background: #f6f6f9;
+      padding: 1.2rem 0.8rem;
+      text-align: center;
+      border-radius: 24px;
+      transition: var(--transition-smooth);
+      border: 1px solid #eeeeee;
+    }
+    .stat-number {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: #000;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      font-weight: 500;
+    }
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .stats { max-width: 400px; margin: 0 auto; width: 100%; }
+    }
+
+    /* Skills pills */
+    .skills-category {
+      margin-bottom: 2rem;
+    }
+    .skills-category h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .badge-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+    .skill-badge {
+      background: #f0f0f2;
+      padding: 0.45rem 1.1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: transform 0.2s ease, background 0.2s;
+      cursor: default;
+      color: #1f1f1f;
+    }
+    .skill-badge:hover {
+      transform: scale(1.05);
+      background: #e4e4e7;
+      color: #000;
+    }
+
+    /* Timeline experience (mobile column) */
+    .timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .timeline-item {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+    .timeline-left {
+      flex: 1;
+      text-align: right;
+      padding-right: 1rem;
+    }
+    .timeline-right {
+      flex: 2;
+      border-left: 2px solid #000;
+      padding-left: 1.5rem;
+    }
+    .timeline-date {
+      font-weight: 600;
+      color: #000;
+      font-size: 0.85rem;
+    }
+    .timeline-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    .timeline-company {
+      font-weight: 500;
+      color: #4a4a4a;
+      margin: 0.2rem 0 0.6rem;
+      font-size: 0.9rem;
+    }
+    .timeline-right ul {
+      padding-left: 1.2rem;
+    }
+    .timeline-right li {
+      margin-bottom: 0.5rem;
+      color: #2d2d2d;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 700px) {
+      .timeline-item { flex-direction: column; gap: 0.3rem; margin-bottom: 2rem; }
+      .timeline-left { text-align: left; padding-right: 0; }
+      .timeline-right { border-left: 2px solid #000; padding-left: 1.2rem; margin-left: 0.5rem; }
+    }
+
+    /* EDUCATION section cards (clean, responsive grid) */
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.8rem;
+    }
+    .edu-card {
+      background: var(--card-bg);
+      border: 1px solid #ececec;
+      border-radius: 28px;
+      padding: 1.8rem;
+      transition: transform 0.25s ease, box-shadow 0.2s;
+      box-shadow: var(--shadow-sm);
+    }
+    .edu-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lift);
+      border-color: #d0d0d0;
+    }
+    .edu-degree {
+      font-size: 1.45rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .edu-institution {
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 0.4rem;
+      font-size: 0.95rem;
+    }
+    .edu-date {
+      font-size: 0.8rem;
+      color: #5b5b5b;
+      margin-bottom: 0.9rem;
+      letter-spacing: 0.2px;
+    }
+    .edu-desc {
+      font-size: 0.88rem;
+      color: #3b3b3b;
+      line-height: 1.45;
+    }
+    @media (max-width: 780px) {
+      .education-grid { grid-template-columns: 1fr; gap: 1.4rem; }
+      .edu-card { padding: 1.5rem; }
+    }
+
+    /* contact + footer */
+    .contact {
+      text-align: center;
+    }
+    .contact-message {
+      font-size: 1.1rem;
+      margin-bottom: 1.8rem;
+      padding: 0 0.5rem;
+    }
+    .contact-email {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1.8rem;
+      display: inline-block;
+      word-break: break-all;
+    }
+    .contact-email a {
+      color: #000;
+      text-decoration: none;
+      border-bottom: 2px solid #ddd;
+      transition: border-color 0.2s;
+    }
+    .contact-email a:hover {
+      border-bottom-color: #000;
+    }
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1.8rem;
+      font-size: 1.7rem;
+      flex-wrap: wrap;
+    }
+    .social-icons a {
+      color: #2c2c2c;
+      transition: color 0.2s, transform 0.1s;
+    }
+    .social-icons a:hover {
+      color: #000;
+      transform: translateY(-2px);
+    }
+    footer {
+      border-top: 1px solid #eaeef2;
+      padding: 1.8rem 0;
+      margin-top: 2rem;
+      text-align: center;
+      color: #5a5a5a;
+      font-size: 0.8rem;
+    }
+    section {
+      scroll-margin-top: 90px;
+      margin-bottom: var(--space-section);
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid #000;
+      outline-offset: 3px;
+    }
+    /* small fixes for touch */
+    .btn, .nav-links a, .social-icons a, .skill-badge {
+      -webkit-tap-highlight-color: transparent;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="#" class="nav-logo">ARISH</a>
+    <ul class="nav-links">
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#experience" class="nav-link">Experience</a></li>
+      <li><a href="#education" class="nav-link">Education</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <!-- HERO with typing animation -->
+  <section class="hero" id="hero">
+    <div class="container hero-content">
+      <h1 class="hero-title">Syed Mohammed Arish</h1>
+      <div class="role-wrapper">
+        <span>⚡</span>
+        <span id="typewriter"></span>
+      </div>
+      <p class="hero-bio">Python-focused AI Engineer · LLM evaluation & prompt engineering · SFT & RLHF workflows · Building reliable model intelligence.</p>
+      <div class="cta-group">
+        <a href="#education" class="btn btn-primary">Explore Education</a>
+        <a href="https://drive.google.com/drive/folders/1vnbCB839lDIYr97Cg_kYvmRV4pwL5IkX?dmr=1&ec=wgc-drive-%5Bmodule%5D-goto" class="btn btn-outline" id="downloadCVBtn">Download CV <i class="fas fa-download"></i></a>
+      </div>
+    </div>
+    <div class="floating-shape"></div>
+  </section>
+
+  <!-- ABOUT section 2-col -->
+  <section id="about" class="container reveal">
+    <h2>About</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I’m a Python developer with 2+ years of specialized experience in LLM evaluation, fine-tuning datasets, and model alignment using SFT & RLHF. I excel at transforming raw model outputs into high-quality benchmarks and reducing hallucinations through systematic analysis.</p>
+        <p>Worked on Turing’s Nemotron, Eclipse Consulting, and global annotation initiatives. I blend prompt engineering with robust data curation to build reliable AI systems.</p>
+      </div>
+      <div class="stats">
+        <div class="stat-card"><div class="stat-number">2+</div><div class="stat-label">Years Exp.</div></div>
+        <div class="stat-card"><div class="stat-number">5+</div><div class="stat-label">LLM Projects</div></div>
+        <div class="stat-card"><div class="stat-number">4+</div><div class="stat-label">Models Evaluated</div></div>
+        <div class="stat-card"><div class="stat-number">3K+</div><div class="stat-label">SFT Datasets</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS black/white -->
+  <section id="skills" class="container reveal">
+    <h2>Core Expertise</h2>
+    <div class="skills-category">
+      <h3>AI & LLM Specializations</h3>
+      <div class="badge-list">
+        <span class="skill-badge">Python</span><span class="skill-badge">LLM Evaluation</span><span class="skill-badge">Prompt Engineering</span>
+        <span class="skill-badge">SFT / RLHF</span><span class="skill-badge">Model Response Analysis</span><span class="skill-badge">Hallucination Detection</span>
+        <span class="skill-badge">Quality Benchmarking</span><span class="skill-badge">JSON Data Curation</span>
+      </div>
+    </div>
+    <div class="skills-category">
+      <h3>Engineering & Tools</h3>
+      <div class="badge-list">
+        <span class="skill-badge">REST APIs</span><span class="skill-badge">Git & GitHub</span><span class="skill-badge">Agile Workflow</span>
+        <span class="skill-badge">HTML/CSS/JS</span><span class="skill-badge">Debugging & Testing</span><span class="skill-badge">Data Annotation QA</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE timeline -->
+  <section id="experience" class="container reveal">
+    <h2>Work Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-left"><span class="timeline-date">Aug 2025 – Apr 2026</span></div>
+        <div class="timeline-right">
+          <div class="timeline-title">LLM Trainer</div>
+          <div class="timeline-company">Turing · Nemotron Project</div>
+          <ul><li>Evaluated LLM outputs via Python workflows, refined response reliability & reduced hallucination</li><li>Contributed to SFT data generation and prompt engineering for model fine-tuning pipelines</li><li>Performed quality assessment and benchmarking to boost factual consistency</li></ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-left"><span class="timeline-date">May 2024 – Jul 2025</span></div>
+        <div class="timeline-right">
+          <div class="timeline-title">Data / Tool Validation Specialist</div>
+          <div class="timeline-company">Eclipse Consulting</div>
+          <ul><li>Executed LLM output evaluation & prompt-based analysis for high-value fine-tuning datasets</li><li>Generated, reviewed, and curated SFT data including code-based reasoning tasks</li><li>Improved data pipelines and model evaluation metrics</li></ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-left"><span class="timeline-date">Nov 2023 – Mar 2024</span></div>
+        <div class="timeline-right">
+          <div class="timeline-title">Data Annotation Evaluator</div>
+          <div class="timeline-company">Thaicom Global</div>
+          <ul><li>Crafted high-quality SFT samples with structured prompts for conversational & technical domains</li><li>Flagged model hallucinations and edge cases, boosting interpretability</li><li>Ranked model versions for RLHF focusing on factuality and coherence</li></ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-left"><span class="timeline-date">Oct 2022 – Aug 2023</span></div>
+        <div class="timeline-right">
+          <div class="timeline-title">Front-end Developer</div>
+          <div class="timeline-company">Insights Autotech Consultants</div>
+          <ul><li>Built responsive websites with HTML, CSS, JavaScript; UI/UX implementation</li><li>Practiced agile collaboration & version control with Git</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION section mobile-friendly cards -->
+  <section id="education" class="container reveal">
+    <h2>Education</h2>
+    <div class="education-grid">
+      <div class="edu-card">
+        <div class="edu-degree">Bachelor of Technology</div>
+        <div class="edu-institution">Mahakal Institute of Technology</div>
+        <div class="edu-date">June 2024</div>
+        <div class="edu-desc">Computer Science engineering with specialization in AI/ML workflows, data structures, and software development. Graduated with distinction.</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">Higher Secondary (PCM)</div>
+        <div class="edu-institution">Model High Secondary</div>
+        <div class="edu-date">June 2018</div>
+        <div class="edu-desc">Specialized in Physics, Chemistry, Mathematics — foundation for analytical problem-solving and computational thinking.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="container reveal contact">
+    <br>
+
+    <h2>Let's Connect</h2>
+    <div class="contact-message">Interested in LLM alignment, dataset engineering or AI collaboration? Let’s talk.</div>
+    <div class="contact-email"><a href="mailto:arishsyed1962@gmail.com">arishsyed1962@gmail.com</a></div>
+    <div class="social-icons">
+      <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://x.com/Arish1625" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div>© 2026 Syed Mohammed Arish — All rights reserved.</div>
+</footer>
+
+<script>
+  (function() {
+    // 1) typewriter effect (roles cycle)
+    const roles = ["Python Developer", "LLM Engineer", "AI Quality Architect", "Prompt Designer"];
+    let idx = 0, charIndex = 0, isDeleting = false;
+    const typeEl = document.getElementById("typewriter");
+    function typeEffect() {
+      const current = roles[idx];
+      if (isDeleting) typeEl.textContent = current.substring(0, charIndex - 1), charIndex--;
+      else typeEl.textContent = current.substring(0, charIndex + 1), charIndex++;
+      if (!isDeleting && charIndex === current.length) { isDeleting = true; setTimeout(typeEffect, 1500); return; }
+      if (isDeleting && charIndex === 0) { isDeleting = false; idx = (idx + 1) % roles.length; setTimeout(typeEffect, 260); return; }
+      setTimeout(typeEffect, isDeleting ? 50 : 90);
+    }
+    typeEffect();
+
+    // 2) Navbar hide/show on scroll (mobile aware)
+    let lastScrollY = 0;
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      const currentY = window.scrollY;
+      if (currentY > 65) {
+        if (currentY > lastScrollY) navbar.classList.add('hide');
+        else navbar.classList.remove('hide');
+      } else navbar.classList.remove('hide');
+      lastScrollY = currentY;
+    });
+
+    // 3) IntersectionObserver for scroll reveal (works on all devices)
+    const revealItems = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('revealed'); });
+    }, { threshold: 0.12, rootMargin: "0px 0px -10px 0px" });
+    revealItems.forEach(el => observer.observe(el));
+
+    // 4) Active nav link highlight
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-link");
+    function setActiveLink() {
+      let currentId = "";
+      const scrollPos = window.scrollY + 100;
+      sections.forEach(sec => {
+        const top = sec.offsetTop, bottom = top + sec.offsetHeight;
+        if (scrollPos >= top && scrollPos < bottom) currentId = sec.getAttribute("id");
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href").substring(1) === currentId) link.classList.add("active");
+      });
+    }
+    window.addEventListener("scroll", setActiveLink);
+    setActiveLink();
+
+    // 5) Smooth scroll anchor with offset for sticky navbar
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === "#" || targetId === "") return;
+        const targetElem = document.querySelector(targetId);
+        if (targetElem) {
+          e.preventDefault();
+          targetElem.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+  })();
+</script>
+</body>
+</html>
