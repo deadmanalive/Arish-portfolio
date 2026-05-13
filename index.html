@@ -3,10 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-  <title>Syed Mohammed Arish · LLM Engineer</title>
+  <title>Syed Mohammed Arish · Python Developer</title>
+  <!-- Batman Favicon (SVG + Data URI fallback) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23000000' d='M50 10L10 30v40l40 20 40-20V30L50 10zm0 8l28 14v30l-28 14-28-14V32l28-14z'/%3E%3Cpath fill='%23000000' d='M50 30l-8 4v12l8 4 8-4V34l-8-4z'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADfSURBVFhH7ZbBDYJAEAVnK8BKsBKsBCvBSrASrAQrwUqwEqxES7ASLEEr0UrYg2xMMpNwZzfJLNlAMoHfZJh/78EwDMMwDMPsxgj8pQXgE3gHXoATcGLFmniC27UjJ/PouAQ8A6/AE/AM3JlYkmtXjuTk5QpwBzwC98AdcAOugdMqGKs3YA/ssZ0HrqR7XbkhJ0euS+DMjDnwbETkGvDnMiYHrogT4MBIZQvMpIAzI3gNeDEmF64X4MqIXAImJ3BmRE6Bb2NiTUWsgDtjcgk8GZFrwMnInBj/IjAMwzAMw7Dz+AJOJOBGQHrMNgAAAABJRU5ErkJggg==">
   <!-- Google Fonts: refined & professional -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Bricolage+Grotesque:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Font Awesome 6 (lightweight icons) -->
+  <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
@@ -15,13 +18,11 @@
       box-sizing: border-box;
     }
 
-    /* ----- CSS VARIABLES — Black & white base, smooth gradients for buttons ----- */
+    /* CSS VARIABLES — Black & white base, gradient buttons */
     :root {
       --bg-white: #ffffff;
-      --bg-offwhite: #fafafa;
       --text-dark: #0a0a0a;
       --text-soft: #2b2b2b;
-      --text-muted: #4a4a4a;
       --border-light: #e8e8ec;
       --card-bg: #ffffff;
       --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.02), 0 4px 12px rgba(0, 0, 0, 0.02);
@@ -29,12 +30,10 @@
       --transition-smooth: all 0.25s ease;
       --space-section: 6rem;
       --container-padding: 2rem;
-      /* sophisticated gradients for buttons (black/gray depth) */
       --gradient-primary: linear-gradient(135deg, #111111 0%, #2c2c2c 100%);
       --gradient-hover: linear-gradient(135deg, #000000 0%, #1f1f1f 100%);
     }
 
-    /* extra mobile optimizations: spacing reduces */
     @media (max-width: 768px) {
       :root {
         --space-section: 4rem;
@@ -78,7 +77,7 @@
       width: 100%;
     }
 
-    /* ----- NAVBAR (fully responsive, hide on scroll) ----- */
+    /* ----- NAVBAR (hide on scroll, fully responsive) ----- */
     .navbar {
       position: fixed;
       top: 0;
@@ -145,10 +144,9 @@
     @media (max-width: 480px) {
       .nav-links { gap: 0.9rem; }
       .nav-links a { font-size: 0.8rem; }
-      .nav-logo { font-size: 1.2rem; }
     }
 
-    /* ----- HERO full viewport (mobile-optimized) ----- */
+    /* HERO full viewport */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -233,18 +231,19 @@
       border-color: #000;
       transform: translateY(-2px);
     }
-    /* floating subtle element - hides on very small to avoid overlap */
+    /* floating batman-inspired subtle shape (dark) */
     .floating-shape {
       position: absolute;
       right: 4%;
       bottom: 8%;
-      width: 160px;
-      height: 160px;
+      width: 140px;
+      height: 140px;
       border: 1.5px solid rgba(0,0,0,0.06);
       border-radius: 62% 38% 42% 58% / 48% 52% 48% 52%;
       animation: floatRotation 22s infinite ease-in-out;
       pointer-events: none;
       z-index: 0;
+      opacity: 0.5;
     }
     @keyframes floatRotation {
       0% { transform: translate(0, 0) rotate(0deg); border-radius: 62% 38% 42% 58% / 48% 52% 48% 52%;}
@@ -258,7 +257,7 @@
       .floating-shape { display: none; }
     }
 
-    /* about two column (fully responsive) */
+    /* about two column */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -296,7 +295,6 @@
     }
     @media (max-width: 768px) {
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .stats { max-width: 400px; margin: 0 auto; width: 100%; }
     }
 
     /* Skills pills */
@@ -329,7 +327,7 @@
       color: #000;
     }
 
-    /* Timeline experience (mobile column) */
+    /* Timeline experience (Python dev focused, key points rewritten) */
     .timeline {
       position: relative;
       max-width: 1000px;
@@ -380,7 +378,7 @@
       .timeline-right { border-left: 2px solid #000; padding-left: 1.2rem; margin-left: 0.5rem; }
     }
 
-    /* EDUCATION section cards (clean, responsive grid) */
+    /* Education cards */
     .education-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -423,17 +421,15 @@
     }
     @media (max-width: 780px) {
       .education-grid { grid-template-columns: 1fr; gap: 1.4rem; }
-      .edu-card { padding: 1.5rem; }
     }
 
-    /* contact + footer */
+    /* contact */
     .contact {
       text-align: center;
     }
     .contact-message {
       font-size: 1.1rem;
       margin-bottom: 1.8rem;
-      padding: 0 0.5rem;
     }
     .contact-email {
       font-size: 1.3rem;
@@ -491,17 +487,13 @@
       outline: 2px solid #000;
       outline-offset: 3px;
     }
-    /* small fixes for touch */
-    .btn, .nav-links a, .social-icons a, .skill-badge {
-      -webkit-tap-highlight-color: transparent;
-    }
   </style>
 </head>
 <body>
 
 <nav class="navbar" id="navbar">
   <div class="nav-container">
-    <a href="#" class="nav-logo">ARISH</a>
+    <a href="#" class="nav-logo">Arish</a>
     <ul class="nav-links">
       <li><a href="#about" class="nav-link">About</a></li>
       <li><a href="#skills" class="nav-link">Skills</a></li>
@@ -513,7 +505,7 @@
 </nav>
 
 <main>
-  <!-- HERO with typing animation -->
+  <!-- HERO -->
   <section class="hero" id="hero">
     <div class="container hero-content">
       <h1 class="hero-title">Syed Mohammed Arish</h1>
@@ -521,45 +513,45 @@
         <span>⚡</span>
         <span id="typewriter"></span>
       </div>
-      <p class="hero-bio">Python-focused AI Engineer · LLM evaluation & prompt engineering · SFT & RLHF workflows · Building reliable model intelligence.</p>
+      <p class="hero-bio">Python-focused developer · LLM evaluation & prompt engineering · SFT, RLHF & high-quality dataset pipelines.</p>
       <div class="cta-group">
-        <a href="#education" class="btn btn-primary">Explore Education</a>
-        <a href="https://drive.google.com/drive/folders/1vnbCB839lDIYr97Cg_kYvmRV4pwL5IkX?dmr=1&ec=wgc-drive-%5Bmodule%5D-goto" class="btn btn-outline" id="downloadCVBtn">Download CV <i class="fas fa-download"></i></a>
+        <a href="#experience" class="btn btn-primary">View Experience</a>
+        <a href="#" class="btn btn-outline" id="downloadCVBtn">Download CV <i class="fas fa-download"></i></a>
       </div>
     </div>
     <div class="floating-shape"></div>
   </section>
 
-  <!-- ABOUT section 2-col -->
+  <!-- ABOUT -->
   <section id="about" class="container reveal">
     <h2>About</h2>
     <div class="about-grid">
       <div class="about-text">
-        <p>I’m a Python developer with 2+ years of specialized experience in LLM evaluation, fine-tuning datasets, and model alignment using SFT & RLHF. I excel at transforming raw model outputs into high-quality benchmarks and reducing hallucinations through systematic analysis.</p>
-        <p>Worked on Turing’s Nemotron, Eclipse Consulting, and global annotation initiatives. I blend prompt engineering with robust data curation to build reliable AI systems.</p>
+        <p>Python-focused developer with over 3 years of experience in LLM evaluation, prompt engineering, and building high-quality datasets for model training. Skilled in Python, JSON, and modern AI workflows including SFT and RLHF, with hands-on experience in evaluating model outputs, improving data pipelines, and enhancing model performance through structured analysis and quality benchmarking.</p>
+        <p>I combine software engineering principles with AI evaluation to deliver reliable model intelligence and reduce hallucinations across production systems.</p>
       </div>
       <div class="stats">
-        <div class="stat-card"><div class="stat-number">2+</div><div class="stat-label">Years Exp.</div></div>
-        <div class="stat-card"><div class="stat-number">5+</div><div class="stat-label">LLM Projects</div></div>
-        <div class="stat-card"><div class="stat-number">4+</div><div class="stat-label">Models Evaluated</div></div>
-        <div class="stat-card"><div class="stat-number">3K+</div><div class="stat-label">SFT Datasets</div></div>
+        <div class="stat-card"><div class="stat-number">3+</div><div class="stat-label">Years Exp.</div></div>
+        <div class="stat-card"><div class="stat-number">4+</div><div class="stat-label">LLM Projects</div></div>
+        <div class="stat-card"><div class="stat-number">5+</div><div class="stat-label">Models Evaluated</div></div>
+        <div class="stat-card"><div class="stat-number">3K+</div><div class="stat-label">SFT Samples</div></div>
       </div>
     </div>
   </section>
 
-  <!-- SKILLS black/white -->
+  <!-- SKILLS -->
   <section id="skills" class="container reveal">
     <h2>Core Expertise</h2>
     <div class="skills-category">
-      <h3>AI & LLM Specializations</h3>
+      <h3>Python & AI Engineering</h3>
       <div class="badge-list">
         <span class="skill-badge">Python</span><span class="skill-badge">LLM Evaluation</span><span class="skill-badge">Prompt Engineering</span>
         <span class="skill-badge">SFT / RLHF</span><span class="skill-badge">Model Response Analysis</span><span class="skill-badge">Hallucination Detection</span>
-        <span class="skill-badge">Quality Benchmarking</span><span class="skill-badge">JSON Data Curation</span>
+        <span class="skill-badge">Quality Benchmarking</span><span class="skill-badge">JSON / Data Curation</span>
       </div>
     </div>
     <div class="skills-category">
-      <h3>Engineering & Tools</h3>
+      <h3>Development & Tools</h3>
       <div class="badge-list">
         <span class="skill-badge">REST APIs</span><span class="skill-badge">Git & GitHub</span><span class="skill-badge">Agile Workflow</span>
         <span class="skill-badge">HTML/CSS/JS</span><span class="skill-badge">Debugging & Testing</span><span class="skill-badge">Data Annotation QA</span>
@@ -576,37 +568,64 @@
         <div class="timeline-right">
           <div class="timeline-title">LLM Trainer</div>
           <div class="timeline-company">Turing · Nemotron Project</div>
-          <ul><li>Evaluated LLM outputs via Python workflows, refined response reliability & reduced hallucination</li><li>Contributed to SFT data generation and prompt engineering for model fine-tuning pipelines</li><li>Performed quality assessment and benchmarking to boost factual consistency</li></ul>
+          <ul>
+            <li>Developed Python evaluation pipelines to benchmark LLM responses, reducing factual hallucinations.</li>
+            <li>Engineered prompt strategies and SFT data generation workflows for fine-tuning large language models.</li>
+            <li>Automated quality assessment metrics using custom Python scripts, improving iteration speed for model releases.</li>
+          </ul>
         </div>
       </div>
       <div class="timeline-item">
-        <div class="timeline-left"><span class="timeline-date">May 2024 – Jul 2025</span></div>
+        <div class="timeline-left"><span class="timeline-date">Aug 2024 – Jul 2025</span></div>
+        <div class="timeline-right">
+          <div class="timeline-title">Python Developer</div>
+          <div class="timeline-company">Codegate</div>
+          <ul>
+            <li>Designed and maintained Python back-end services for LLM-based code generation tools.</li>
+            <li>Implemented data validation and cleaning pipelines for training datasets using Pandas and JSON manipulation.</li>
+            <li>Collaborated with research teams to integrate model outputs into production APIs.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-left"><span class="timeline-date">May 2023 – Jul 2024</span></div>
         <div class="timeline-right">
           <div class="timeline-title">Data / Tool Validation Specialist</div>
           <div class="timeline-company">Eclipse Consulting</div>
-          <ul><li>Executed LLM output evaluation & prompt-based analysis for high-value fine-tuning datasets</li><li>Generated, reviewed, and curated SFT data including code-based reasoning tasks</li><li>Improved data pipelines and model evaluation metrics</li></ul>
+          <ul>
+            <li>Conducted LLM output evaluation and prompt-based response analysis for fine-tuning datasets.</li>
+            <li>Generated, reviewed, and curated SFT data involving code-based reasoning tasks and Python solutions.</li>
+            <li>Built automated validation scripts to flag low-quality responses, enhancing dataset reliability.</li>
+          </ul>
         </div>
       </div>
       <div class="timeline-item">
-        <div class="timeline-left"><span class="timeline-date">Nov 2023 – Mar 2024</span></div>
+        <div class="timeline-left"><span class="timeline-date">Jul 2022 – Apr 2023</span></div>
         <div class="timeline-right">
           <div class="timeline-title">Data Annotation Evaluator</div>
           <div class="timeline-company">Thaicom Global</div>
-          <ul><li>Crafted high-quality SFT samples with structured prompts for conversational & technical domains</li><li>Flagged model hallucinations and edge cases, boosting interpretability</li><li>Ranked model versions for RLHF focusing on factuality and coherence</li></ul>
+          <ul>
+            <li>Produced high-quality SFT samples using structured prompts for conversational and technical domains.</li>
+            <li>Provided feedback on model hallucinations and edge cases, improving model interpretability.</li>
+            <li>Compared outputs from two model versions for RLHF ranking, focusing on factuality and coherence.</li>
+          </ul>
         </div>
       </div>
       <div class="timeline-item">
-        <div class="timeline-left"><span class="timeline-date">Oct 2022 – Aug 2023</span></div>
+        <div class="timeline-left"><span class="timeline-date">Apr 2021 – Nov 2021</span></div>
         <div class="timeline-right">
           <div class="timeline-title">Front-end Developer</div>
           <div class="timeline-company">Insights Autotech Consultants</div>
-          <ul><li>Built responsive websites with HTML, CSS, JavaScript; UI/UX implementation</li><li>Practiced agile collaboration & version control with Git</li></ul>
+          <ul>
+            <li>Built responsive websites using HTML, CSS, and JavaScript with focus on UI/UX best practices.</li>
+            <li>Collaborated in team-based agile environment, utilizing Git for version control and project tracking.</li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- EDUCATION section mobile-friendly cards -->
+  <!-- EDUCATION -->
   <section id="education" class="container reveal">
     <h2>Education</h2>
     <div class="education-grid">
@@ -614,13 +633,13 @@
         <div class="edu-degree">Bachelor of Technology</div>
         <div class="edu-institution">Mahakal Institute of Technology</div>
         <div class="edu-date">June 2024</div>
-        <div class="edu-desc">Computer Science engineering with specialization in AI/ML workflows, data structures, and software development. Graduated with distinction.</div>
+        <div class="edu-desc">Computer Science engineering with specialization in AI/ML workflows, data structures, and software development.</div>
       </div>
       <div class="edu-card">
         <div class="edu-degree">Higher Secondary (PCM)</div>
         <div class="edu-institution">Model High Secondary</div>
-        <div class="edu-date">June 2018</div>
-        <div class="edu-desc">Specialized in Physics, Chemistry, Mathematics — foundation for analytical problem-solving and computational thinking.</div>
+        <div class="edu-date">June 2020</div>
+        <div class="edu-desc">Specialized in Physics, Chemistry, Mathematics — foundation for analytical problem-solving.</div>
       </div>
     </div>
   </section>
@@ -628,12 +647,11 @@
   <!-- CONTACT -->
   <section id="contact" class="container reveal contact">
     <br>
-
     <h2>Let's Connect</h2>
-    <div class="contact-message">Interested in LLM alignment, dataset engineering or AI collaboration? Let’s talk.</div>
+    <div class="contact-message">Interested in LLM alignment, dataset engineering or Python development? Let’s talk.</div>
     <div class="contact-email"><a href="mailto:arishsyed1962@gmail.com">arishsyed1962@gmail.com</a></div>
     <div class="social-icons">
-      <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://www.linkedin.com/in/syed-arish-3966a5212/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
       <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
       <a href="https://x.com/Arish1625" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
     </div>
@@ -646,7 +664,7 @@
 
 <script>
   (function() {
-    // 1) typewriter effect (roles cycle)
+    // 1) Typewriter effect
     const roles = ["Python Developer", "LLM Engineer", "AI Quality Architect", "Prompt Designer"];
     let idx = 0, charIndex = 0, isDeleting = false;
     const typeEl = document.getElementById("typewriter");
@@ -660,7 +678,7 @@
     }
     typeEffect();
 
-    // 2) Navbar hide/show on scroll (mobile aware)
+    // 2) Navbar hide/show on scroll
     let lastScrollY = 0;
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
@@ -672,14 +690,14 @@
       lastScrollY = currentY;
     });
 
-    // 3) IntersectionObserver for scroll reveal (works on all devices)
+    // 3) Scroll reveal
     const revealItems = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('revealed'); });
     }, { threshold: 0.12, rootMargin: "0px 0px -10px 0px" });
     revealItems.forEach(el => observer.observe(el));
 
-    // 4) Active nav link highlight
+    // 4) Active nav highlight
     const sections = document.querySelectorAll("section");
     const navLinks = document.querySelectorAll(".nav-link");
     function setActiveLink() {
@@ -697,7 +715,7 @@
     window.addEventListener("scroll", setActiveLink);
     setActiveLink();
 
-    // 5) Smooth scroll anchor with offset for sticky navbar
+    // 5) Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const targetId = this.getAttribute('href');
